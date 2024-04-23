@@ -1,0 +1,36 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: test_task_django_web
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.docker
+    depends_on:
+      - redis
+      - db
+  db:
+    image: postgres:latest
+    container_name: test_task_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    env_file:
+      - ./.env.docker
+  redis:
+    image: redis:latest
+    container_name: test_task_redis
+    ports:
+      - 6379:6379
+    env_file:
+     - ./.env.docker
+    volumes:
+      - redis:/data
+
+volumes:
+  postgres_data:
+  redis:
