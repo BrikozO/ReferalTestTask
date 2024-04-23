@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'referalapi.apps.ReferalapiConfig',
+    'referalweb.apps.ReferalwebConfig',
     'rest_framework',
     'drf_spectacular',
     'rest_framework.authtoken',
