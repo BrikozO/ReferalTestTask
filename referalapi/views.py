@@ -48,7 +48,7 @@ class UserCreateView(CreateAPIView):
         redis_client.set(code, request.data['phone_number'])
         redis_client.expire(code, 60)
         uri: str = reverse('enter_registration_code')
-        return Response({'code': GET_VERIFICATION_CODE_API_MESSAGE, 'code-enter-endpoint': uri},
+        return Response({'message': GET_VERIFICATION_CODE_API_MESSAGE, 'code-enter-endpoint': uri, 'code': code},
                         status=status.HTTP_202_ACCEPTED)
 
 

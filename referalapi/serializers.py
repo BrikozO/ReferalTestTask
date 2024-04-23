@@ -22,7 +22,7 @@ class UserCreationSerializer(serializers.ModelSerializer):
 class UserProfileSerializer(serializers.ModelSerializer):
     other_user_invite_code = serializers.CharField(min_length=config('INVITE_CODE_LENGTH', cast=int, default=6),
                                                    max_length=config('INVITE_CODE_LENGTH', cast=int, default=6),
-                                                   allow_blank=True)
+                                                   allow_blank=True, source='other_user_invite_code.my_invite_code')
     referrals = serializers.SerializerMethodField()
 
     def get_referrals(self, obj):
